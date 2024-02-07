@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh """
                     cd 01-vpc
-                    terraform init -reconfigure
+                    echo "terraform init -reconfigure"
                     terraform destroy -auto-approve
                 """
             }
@@ -27,7 +27,7 @@ pipeline {
             steps {
                 sh """
                     cd 02-sg
-                    terraform init -reconfigure
+                    echo "terraform init -reconfigure"
                     terraform destroy -auto-approve
                 """
             }
@@ -37,7 +37,7 @@ pipeline {
             steps {
                 sh """
                     cd 03-vpn
-                    terraform init -reconfigure
+                    echo "terraform init -reconfigure"
                     terraform destroy -auto-approve
                 """
             }
@@ -48,7 +48,7 @@ pipeline {
                     steps {
                         sh """
                             cd 04-databases
-                            terraform init -reconfigure
+                            echo "terraform init -reconfigure"
                             terraform destroy -auto-approve
                         """
                     }
@@ -57,7 +57,7 @@ pipeline {
                     steps {
                         sh """
                             cd 05-app-alb
-                            terraform init -reconfigure
+                            echo "terraform init -reconfigure" -reconfigure
                             terraform destroy -auto-approve
                         """
                     }
