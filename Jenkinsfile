@@ -17,53 +17,53 @@ pipeline {
             steps {
                 sh """
                     cd 01-vpc
-                    echo "terraform init -reconfigure"
+                    terraform init -reconfigure
                     terraform destroy -auto-approve
                 """
             }
         }
 
-        stage('SG') {
-            steps {
-                sh """
-                    cd 02-sg
-                    echo "terraform init -reconfigure"
-                    terraform destroy -auto-approve
-                """
-            }
-        }
+        // stage('SG') {
+        //     steps {
+        //         sh """
+        //             cd 02-sg
+        //             terraform init -reconfigure
+        //             terraform destroy -auto-approve
+        //         """
+        //     }
+        // }
 
-        stage('VPN') {
-            steps {
-                sh """
-                    cd 03-vpn
-                    echo "terraform init -reconfigure"
-                    terraform destroy -auto-approve
-                """
-            }
-        }
-        stage('DB ALB') {
-            parallel {
-                stage('DB') {
-                    steps {
-                        sh """
-                            cd 04-databases
-                            echo "terraform init -reconfigure"
-                            terraform destroy -auto-approve
-                        """
-                    }
-                }
-                stage('APP ALB') {
-                    steps {
-                        sh """
-                            cd 05-app-alb
-                            echo "terraform init -reconfigure" -reconfigure
-                            terraform destroy -auto-approve
-                        """
-                    }
-                }
-            }
-        }  
+        // stage('VPN') {
+        //     steps {
+        //         sh """
+        //             cd 03-vpn
+        //             terraform init -reconfigure
+        //             terraform destroy -auto-approve
+        //         """
+        //     }
+        // }
+        // stage('DB ALB') {
+        //     parallel {
+        //         stage('DB') {
+        //             steps {
+        //                 sh """
+        //                     cd 04-databases
+        //                     terraform init -reconfigure
+        //                     terraform destroy -auto-approve
+        //                 """
+        //             }
+        //         }
+        //         stage('APP ALB') {
+        //             steps {
+        //                 sh """
+        //                     cd 05-app-alb
+        //                     terraform init -reconfigure
+        //                     terraform destroy -auto-approve
+        //                 """
+        //             }
+        //         }
+            // }
+        // }  
 
     }    
     // post build
